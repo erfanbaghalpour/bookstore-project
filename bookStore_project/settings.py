@@ -58,7 +58,8 @@ INSTALLED_APPS = [
     "allauth.account",  # new
 
     'accounts.apps.AccountsConfig',
-    'pages.apps.PagesConfig'
+    'pages.apps.PagesConfig',
+    "books.apps.BooksConfig",
 ]
 
 MIDDLEWARE = [
@@ -175,4 +176,5 @@ ACCOUNT_AUTHENTICATION_METHOD = "email"  # new
 ACCOUNT_EMAIL_REQUIRED = True  # new
 ACCOUNT_UNIQUE_EMAIL = True  # new
 
-DEFAULT_FROM_EMAIL = "admin@djangobookstore.com"  # new
+DEFAULT_FROM_EMAIL = "admin@djangobookstore.com"
+# DEFAULT_FROM_EMAIL = "erfanbaghalpour@gmail.com"  # new
