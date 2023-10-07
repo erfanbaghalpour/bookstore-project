@@ -1,5 +1,5 @@
 import uuid  # new
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model  # new
 from django.db import models
 from django.urls import reverse
 
@@ -12,6 +12,7 @@ class Book(models.Model):
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=6, decimal_places=2)
+    cover = models.ImageField(upload_to="covers/", blank=True)  # new
 
     def __str__(self):
         return self.title
@@ -20,16 +21,16 @@ class Book(models.Model):
         return reverse("book_detail", args=[str(self.id)])
 
 
-class Review(models.Model):
+class Review(models.Model):  # new
     book = models.ForeignKey(
         Book,
         on_delete=models.CASCADE,
-        related_name="reviews"
+        related_name="reviews",
     )
     review = models.CharField(max_length=255)
     author = models.ForeignKey(
         get_user_model(),
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
 
     def __str__(self):
