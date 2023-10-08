@@ -24,6 +24,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from environs import Env
+import socket
+
+hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
 
 env = Env()  # new
 env.read_env()  # new
@@ -56,6 +60,7 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",  # new
     "allauth",  # new
     "allauth.account",  # new
+    "debug_toolbar",
 
     'accounts.apps.AccountsConfig',
     'pages.apps.PagesConfig',
@@ -71,6 +76,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'bookStore_project.urls'
